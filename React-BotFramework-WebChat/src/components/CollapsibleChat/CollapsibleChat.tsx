@@ -30,7 +30,7 @@ export class CollapsibleChat extends React.Component<IProps, IState> {
     public render() {
         return (
             <div className="collapsibleChatContainer">
-                {!this.state.isOpened && (<div className="toggleIcon" onClick={this.toggle}><MdChat /></div> )}             
+                {!this.state.isOpened && (<div className="toggleIcon" onClick={this.toggle}><MdChat size={50}/></div> )}             
                 <UnmountClosed isOpened={this.state.isOpened} fixedHeight={590}>
                     <div className="chatWindowPositioner">
                         <div className="chatWindowContainer">
