@@ -3,6 +3,7 @@
 <head>
     <title>Bot Chat</title>
     <meta name="viewport" content="width=device-width">
+    <meta charset="UTF-8">
     <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 </head>
 <body>
@@ -30,7 +31,7 @@
     //init DirectLine connection
     var connection = new BotChat.DirectLine({
         //secret: '<DIRECT_LINE_SECRET>',
-        secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA',
+        secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA', //Hackfest - local
         conversationId: conversationId,
         webSocket: false
     });
@@ -46,6 +47,8 @@
     //init BotChat
     BotChat.App({
             botConnection: connection,
+            chatTitle: 'Beep Boop Robot Captain',
+            sendTypeing: true,
             persistUser: true,
             user: { id: userId, name: "User" },
             resize: 'detect'
