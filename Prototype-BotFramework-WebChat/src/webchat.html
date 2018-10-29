@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Bot Chat</title>
+    <meta name="viewport" content="width=device-width">
     <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
 </head>
 <body>
@@ -49,9 +50,8 @@
             user: { id: userId, name: "User" },
             resize: 'detect'
         },
-        document.getElementById("BotChatGoesHere"));
-
-
+        document.getElementById("BotChatGoesHere")
+    );
 
     //quick helper function to generate a GUID
     function guid() {
