@@ -1,0 +1,27 @@
+.collapsibleChatContainer {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+.chatWindowPositioner {
+    position: relative;
+}
+
+.chatWindowContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 370px;
+    height: 590px;
+    max-height: 590px;
+    height: calc(100vh - 75px);
+    border-radius: 10px;
+    overflow: hidden;
+    -webkit-transition: max-height .2s,width .2s,height .2s,bottom .2s,right .2s;
+    transition: max-height .2s,width .2s,height .2s,bottom .2s,right .2s;
+    z-index: 2147483647;
+    background: #fff;
+    -webkit-box-shadow: 0 0 7px 1px #ababab;
+    box-shadow: 0 0 7px 1px #ababab;
+}

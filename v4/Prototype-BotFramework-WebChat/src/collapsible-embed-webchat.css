@@ -1,0 +1,34 @@
+.webchat-open-container {
+    color: #00b9f2;
+    font-size: 50px; 
+    position: fixed; 
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    cursor: pointer;
+
+    /* while no icon */
+    background-color: #00b9f2;
+    height: 50px;
+    width: 50px;
+}
+
+.webchat-container {
+    visibility: hidden;
+    position: fixed; 
+    bottom: 20px;
+    right: 20px; 
+    z-index: 1000; 
+}
+
+iframe {
+    border-radius: 10px;
+    box-shadow: 0 0 7px 1px #ababab;
+}
+
+.webchat-title-bar {
+    height: 38px; 
+    width: 370px; 
+    position: fixed; 
+    cursor: pointer;
+}

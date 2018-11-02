@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bot Chat</title>
+    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet" />
+</head>
+<body>
+
+<div id="BotChatGoesHere"></div>
+<script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+
+<script>
+    //persist user
+    var userId = '';
+
+    if (localStorage.getItem('userId')) {
+        userId = localStorage.getItem('userId');
+    } else {
+        userId = guid().toString();
+        localStorage.setItem('userId', userId);
+    }
+    
+    //persist conversation
+    var conversationId = '';
+    if (localStorage.getItem('conversationId')) {
+        conversationId = localStorage.getItem('conversationId');
+    }
+
+    //init DirectLine connection
+    var connection = new BotChat.DirectLine({
+        //secret: '<DIRECT_LINE_SECRET>',
+        secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA',
+        conversationId: conversationId,
+        webSocket: false
+    });
+
+    //subscribe to activity event to save conversation id
+    connection.activity$.subscribe(activity => {
+        if (!localStorage.getItem('conversationId')) {
+            conversationId = activity.conversation.id;
+            localStorage.setItem('conversationId', conversationId);
+        } 
+    });
+
+    //init BotChat
+    BotChat.App({
+            botConnection: connection,
+            persistUser: true,
+            user: { id: userId, name: "User" },
+            resize: 'detect'
+        },
+        document.getElementById("BotChatGoesHere"));
+
+
+
+    //quick helper function to generate a GUID
+    function guid() {
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+            (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
+        )
+    }
+
+</script>
+</body>
+</html>
