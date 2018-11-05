@@ -4,12 +4,12 @@
     <title>Bot Chat</title>
     <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8">
-    <link href="https://cdn.botframework.com/botframework-webchat/latest/botchat.css" rel="stylesheet">
+    <link href="https://cdn.botframework.com/botframework-webchat/v3/botchat.css" rel="stylesheet">
 </head>
 <body>
 
 <div id="BotChatGoesHere"></div>
-<script src="https://cdn.botframework.com/botframework-webchat/latest/botchat.js"></script>
+<script src="https://cdn.botframework.com/botframework-webchat/v3/botchat.js"></script>
 
 <script>
     //persist user
@@ -29,12 +29,22 @@
     }
 
     //init DirectLine connection
-    var connection = new BotChat.DirectLine({
-        //secret: '<DIRECT_LINE_SECRET>',
-        secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA', //Hackfest - local
-        conversationId: conversationId,
-        webSocket: false
-    });
+    var connection;
+    if (conversationId === '') {
+        connection = new BotChat.DirectLine({
+            //secret: '<DIRECT_LINE_SECRET>',
+            //secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA', //Hackfest - local
+            secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8' //LDP DEV
+        });
+    } else {
+        connection = new BotChat.DirectLine({
+            //secret: '<DIRECT_LINE_SECRET>',
+            //secret: 'W4DOiQBMA0w.cwA.BwM.Wl8d0zRXXPQ5Ws2iQq-oRl6L9X1lFOMgr9VSY4wSClA', //Hackfest - local
+            secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', //LDP DEV
+            conversationId: conversationId,
+            webSocket: false
+        });
+    }
 
     //subscribe to activity event to save conversation id
     connection.activity$.subscribe(activity => {
@@ -47,8 +57,7 @@
     //init BotChat
     BotChat.App({
             botConnection: connection,
-            chatTitle: 'Beep Boop Robot Captain',
-            sendTypeing: true,
+            chatTitle: 'Lumo-Dev',
             persistUser: true,
             user: { id: userId, name: "User" },
             resize: 'detect'

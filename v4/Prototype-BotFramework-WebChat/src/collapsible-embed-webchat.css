@@ -1,7 +1,7 @@
+/* 'Open' icon */
 .webchat-open-container {
-    color: #00b9f2;
-    font-size: 50px; 
     position: fixed; 
+    font-size: 60px;   
     bottom: 20px; 
     right: 20px; 
     z-index: 1000; 
@@ -9,26 +9,58 @@
 
     /* while no icon */
     background-color: #00b9f2;
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
 }
 
-.webchat-container {
-    visibility: hidden;
-    position: fixed; 
-    bottom: 20px;
-    right: 20px; 
-    z-index: 1000; 
+.webchat-open-icon {
+    color: white;
+    font-size: 30px;
+    position: relative;
+    left: 15px;
+    bottom: 12px;
 }
 
-iframe {
+/* iFrame */
+.webchatFrame, .webchat-container {
+    position: fixed;
+    bottom: 20px; 
+    right: 20px;
+    width: 370px;
+    max-height: 590px;
+    height: calc(100vh - 75px);
     border-radius: 10px;
+    overflow: hidden;
+    -webkit-transition: max-height .2s,width .2s,height .2s,bottom .2s,right .2s;
+    transition: max-height .2s,width .2s,height .2s,bottom .2s,right .2s;
+    -webkit-box-shadow: 0 0 0 0;
+    box-shadow: 0 0 0 0;
+    z-index: 1000;
+    background: #fff;
+    -webkit-box-shadow: 0 0 7px 1px #ababab;
     box-shadow: 0 0 7px 1px #ababab;
 }
 
+/* Overlayed 'close' header */
 .webchat-title-bar {
-    height: 38px; 
-    width: 370px; 
-    position: fixed; 
+    position: fixed;
+    height: 38px;
+    min-height: 38px;
+    width: 370px;   
     cursor: pointer;
+    z-index: 1100;
+}
+
+@media only screen and (max-width: 600px) {
+    .webchatFrame, .webchat-container {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        max-height: 100vh;
+        height: 100%;
+        width: 100%;
+        border-radius: 0;
+    }
 }

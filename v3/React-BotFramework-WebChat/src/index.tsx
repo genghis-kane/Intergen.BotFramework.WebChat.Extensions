@@ -11,6 +11,7 @@ import { CollapsibleChat } from './components/CollapsibleChat/CollapsibleChat';
 ReactDOM.render(
   <CollapsibleChat 
     isOpened={false} 
+    persistUser={true}
     persistConversation={true} 
     icon={<MdChat size={50}/>}
   />,
