@@ -1,3 +1,10 @@
+:root {
+    --ldp-theme: #00b9f2;
+    --ms-theme: #0078d7;
+
+    --webchat-theme: var(--ms-theme);
+}
+
 /* 'Open' icon */
 .webchat-open-container {
     position: fixed; 
@@ -6,9 +13,8 @@
     right: 20px; 
     z-index: 1000; 
     cursor: pointer;
-
-    /* while no icon */
-    background-color: #00b9f2;
+    background-color: var(--webchat-theme);
+    background-color: #0078d7; /* for IE... dumb */
     height: 60px;
     width: 60px;
     border-radius: 30px;
@@ -17,10 +23,11 @@
 
 .webchat-open-icon {
     color: white;
-    font-size: 30px;
+    height: 30px;
+    width: 30px;
     position: relative;
     left: 15px;
-    bottom: 12px;
+    bottom: 10px;
 }
 
 /* iFrame */
@@ -63,4 +70,15 @@
         width: 100%;
         border-radius: 0;
     }
+}
+
+/* 'Close' icon */
+.webchat-close-icon {
+    color: white;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 0;
+    float: right;
+    padding: 7px;
 }

@@ -2,14 +2,21 @@
 <html>
 <head>
     <title>Bot Chat</title>
-    <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8">
-    <link href="https://cdn.botframework.com/botframework-webchat/v3/botchat.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">   
+    <link href="https://cdn.botframework.com/botframework-webchat/v3/botchat.css" rel="stylesheet" />
+    <link href="./webchat.css" rel="stylesheet" />
 </head>
 <body>
 
 <div id="BotChatGoesHere"></div>
-<script src="https://cdn.botframework.com/botframework-webchat/v3/botchat.js"></script>
+<![if IE]>
+    <script src="https://cdn.botframework.com/botframework-webchat/v3/botchat-es5.js"></script>
+<![endif]>
+
+<![if !IE]>
+    <script src="https://cdn.botframework.com/botframework-webchat/v3/botchat.js"></script>
+<![endif]>
 
 <script>
     //persist user
@@ -47,7 +54,7 @@
     }
 
     //subscribe to activity event to save conversation id
-    connection.activity$.subscribe(activity => {
+    connection.activity$.subscribe(function(activity) {
         if (!localStorage.getItem('conversationId')) {
             conversationId = activity.conversation.id;
             localStorage.setItem('conversationId', conversationId);
@@ -67,9 +74,10 @@
 
     //quick helper function to generate a GUID
     function guid() {
-        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
+        var crypto = window.crypto || window.msCrypto;
+        return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, function(c) {
             (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-        )
+        })
     }
 
 </script>

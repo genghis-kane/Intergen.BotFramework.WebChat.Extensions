@@ -1,0 +1,32 @@
+/* MS Bot Framework control overrides */
+:root {
+    --ldp-theme: #00b9f2;
+    --ms-theme: #0078d7;
+
+    --webchat-theme: var(--ms-theme);
+}
+
+.wc-header {
+    background-color: var(--webchat-theme);
+}
+
+.wc-header span {
+    padding-left: 10px;
+}
+
+.wc-message-content {
+    padding: 14px;
+    border-radius: 4px;
+}
+
+.wc-message-from-me .wc-message-content {
+    background-color: var(--webchat-theme);
+}
+
+.wc-message-from-me svg.wc-message-callout path {
+    background-color: var(--webchat-theme);
+}
+
+.wc-adaptive-card {
+    width: auto;
+}
