@@ -1,0 +1,25 @@
+.webchat-title-bar {
+    position: fixed;
+    height: 38px;
+    min-height: 38px;
+    width: 370px;   
+    cursor: pointer;
+    z-index: 1100;
+}
+
+@media only screen and (max-width: 600px) {
+    .webchat-title-bar {
+        width: 100%;
+    }
+}
+
+/* 'Close' icon */
+.webchat-close-icon {
+    color: white;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 0;
+    float: right;
+    padding: 7px;
+}

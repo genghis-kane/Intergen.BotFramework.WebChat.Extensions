@@ -1,48 +1,63 @@
 import * as React from 'react';
 
-import { Chat, DirectLineOptions } from 'botframework-webchat';
-import 'botframework-webchat/botchat.css'
-
-import { DirectLineAuth } from '../../utils/Enums';
-
-export interface IProps {
-    authMethod: DirectLineAuth;
-    persistUser: boolean;
-    persistConversation: boolean;
-    directLineOptions: DirectLineOptions;
-};
+import { Chat, DirectLine } from 'botframework-webchat';
+import 'botframework-webchat/botchat.css';
+import './CachedChat.css';
 
 export interface IState {
-    isOpened: boolean;
+    botConnection: DirectLine;
 };
 
-export class CachedChat extends React.Component<IProps, IState> {
-    private directLineOptions: DirectLineOptions;
-
-    constructor(props: IProps) {
+export class CachedChat extends React.Component<any, IState> {
+    constructor(props: any) {
         super(props);
-        
-        if (this.props.authMethod === DirectLineAuth.Secret) {
-            this.directLineOptions = {
-                secret: this.props.directLineOptions.secret
-            }
+
+        this.initConnection();
+        this.subscribeToMessageEvent();
+    }
+
+    public initConnection() {
+        let connection = null;
+
+        const savedConversationId = localStorage.getItem('conversationId');
+        if (savedConversationId) {
+            connection = new DirectLine({
+                conversationId: savedConversationId,
+                secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', // LDP DEV
+                webSocket: false
+            });       
+        } else {
+            connection = new DirectLine({
+                secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', // LDP DEV
+            });        
         }
 
-        if (this.props.authMethod === DirectLineAuth.Token) {
-            this.directLineOptions = {
-                token: this.props.directLineOptions.token
-            }
+        this.state = {
+            botConnection: connection
         }
+    }
+
+    public subscribeToMessageEvent() {
+        this.state.botConnection.activity$.subscribe(activity => {
+            if (!localStorage.getItem('conversationId')) {
+                if (activity.conversation) {
+                    localStorage.setItem('conversationId', activity.conversation.id);
+                }
+            }
+        });
     }
 
     public render() {
         return (
-            <Chat 
-                directLine={this.directLineOptions}
-                user={{ id: 'user_id', name: 'user_name' }}
-                adaptiveCardsHostConfig={{}}
-                bot={{ id: 'botid', name: 'botname' }}
-            />
+            <div >
+                <Chat 
+                    botConnection={this.state.botConnection}
+                    user={{ id: 'user_id', name: 'user_name' }}
+                    adaptiveCardsHostConfig={{}}
+                    bot={{ id: 'botid', name: 'Lumo' }}
+                />
+            </div>
+            
         );
     }
 }

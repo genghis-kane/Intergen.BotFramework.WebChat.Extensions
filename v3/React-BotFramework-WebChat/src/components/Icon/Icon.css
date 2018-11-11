@@ -1,0 +1,30 @@
+:root {
+    --ldp-theme: #00b9f2;
+    --ms-theme: #0078d7;
+
+    --webchat-theme: var(--ms-theme);
+}
+
+/* 'Open' icon */
+.webchat-open-container {
+    position: fixed; 
+    font-size: 60px;   
+    bottom: 20px; 
+    right: 20px; 
+    z-index: 1000; 
+    cursor: pointer;
+    background-color: var(--webchat-theme);
+    height: 60px;
+    width: 60px;
+    border-radius: 30px;
+    box-shadow: 0 6px 20px rgba(0,0,0,.2);
+}
+
+.webchat-open-icon {
+    color: white;
+    height: 30px;
+    width: 30px;
+    position: relative;
+    left: 15px;
+    bottom: 10px;
+}

@@ -2,12 +2,12 @@ import * as React from 'react';
 
 import { UnmountClosed } from 'react-collapse';
 import { CachedChat } from '../CachedChat/CachedChat';
+import { HeaderOverlay } from '../HeaderOverlay/HeaderOverlay';
+
 import './CollapsibleChat.css';
 
 export interface IProps {
     isOpened: boolean;
-    persistUser: boolean;
-    persistConversation: boolean;
     icon: JSX.Element;
 };
 
@@ -34,14 +34,9 @@ export class CollapsibleChat extends React.Component<IProps, IState> {
                 {!this.state.isOpened && (<div className="toggleIcon" onClick={this.toggle}>{this.props.icon}</div> )}             
                 <UnmountClosed isOpened={this.state.isOpened} fixedHeight={590}>
                     <div className="chatWindowPositioner">
-                        <div className="chatWindowContainer">
-                            {this.props.persistConversation && (
-                                <CachedChat />
-                            )}
-
-                            {!this.props.persistConversation && (
-                                <div>Henlo</div>
-                            )}  
+                        <div className="chatWindowContainer">  
+                            <HeaderOverlay close={this.toggle} />                     
+                            <CachedChat />
                         </div>
                     </div>
                 </UnmountClosed>
