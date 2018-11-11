@@ -8,6 +8,7 @@
 
 .wc-header {
     background-color: var(--webchat-theme);
+    background-color: #0078d7;
 }
 
 .wc-header span {
@@ -15,16 +16,22 @@
 }
 
 .wc-message-content {
-    padding: 14px;
+    padding: 14px !important;
     border-radius: 4px;
 }
 
 .wc-message-from-me .wc-message-content {
     background-color: var(--webchat-theme);
+    background-color: #0078d7;
+}
+
+.wc-message-content .format-markdown {
+    margin: 0;
 }
 
 .wc-message-from-me svg.wc-message-callout path {
     background-color: var(--webchat-theme);
+    background-color: #0078d7;
 }
 
 .wc-adaptive-card {

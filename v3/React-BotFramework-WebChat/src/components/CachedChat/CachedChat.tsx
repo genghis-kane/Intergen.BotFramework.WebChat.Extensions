@@ -1,8 +1,7 @@
 import * as React from 'react';
 
 import { Chat, DirectLine } from 'botframework-webchat';
-import 'botframework-webchat/botchat.css';
-import './CachedChat.css';
+import './botchat.css';
 
 export interface IState {
     botConnection: DirectLine;
@@ -29,7 +28,7 @@ export class CachedChat extends React.Component<any, IState> {
         } else {
             connection = new DirectLine({
                 secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', // LDP DEV
-            });        
+            });
         }
 
         this.state = {

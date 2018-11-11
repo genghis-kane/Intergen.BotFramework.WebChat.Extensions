@@ -10,6 +10,6 @@ import './index.css';
 ReactDOM.render(
   <CollapsibleChat isOpened={false} icon={<Icon />}
   />,
-  document.getElementById('root') as HTMLElement
+  document.getElementById('chatbot-embed-node') as HTMLElement
 );
 registerServiceWorker();
