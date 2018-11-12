@@ -1,14 +1,21 @@
 import * as React from 'react';
 
 import { Chat, DirectLine } from 'botframework-webchat';
+
+import { IBotParams } from '../../BotParams';
+
 import './botchat.css';
+
+export interface IProps {
+    botParams: IBotParams;
+};
 
 export interface IState {
     botConnection: DirectLine;
 };
 
-export class CachedChat extends React.Component<any, IState> {
-    constructor(props: any) {
+export class CachedChat extends React.Component<IProps, IState> {
+    constructor(props: IProps) {
         super(props);
 
         this.initConnection();
@@ -22,12 +29,12 @@ export class CachedChat extends React.Component<any, IState> {
         if (savedConversationId) {
             connection = new DirectLine({
                 conversationId: savedConversationId,
-                secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', // LDP DEV
+                secret: this.props.botParams.id,
                 webSocket: false
             });       
         } else {
             connection = new DirectLine({
-                secret: 'i3iEIj7TxHE.cwA.5FI.fB-zgPpcbK07KzmRK5JHY51bQw9Yzo8L9X4S3DHt1i8', // LDP DEV
+                secret: this.props.botParams.id,
             });
         }
 
@@ -53,7 +60,7 @@ export class CachedChat extends React.Component<any, IState> {
                     botConnection={this.state.botConnection}
                     user={{ id: 'user_id', name: 'user_name' }}
                     adaptiveCardsHostConfig={{}}
-                    bot={{ id: 'botid', name: 'Lumo' }}
+                    bot={{ id: 'botid', name: this.props.botParams.name }}
                 />
             </div>
             

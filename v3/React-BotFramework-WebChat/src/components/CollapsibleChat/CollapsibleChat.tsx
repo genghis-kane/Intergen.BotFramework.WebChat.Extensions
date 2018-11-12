@@ -1,12 +1,15 @@
 import * as React from 'react';
-
 import { UnmountClosed } from 'react-collapse';
+
+import { IBotParams } from '../../BotParams';
+
 import { CachedChat } from '../CachedChat/CachedChat';
 import { HeaderOverlay } from '../HeaderOverlay/HeaderOverlay';
 
 import './CollapsibleChat.css';
 
 export interface IProps {
+    botParams: IBotParams;
     isOpened: boolean;
     icon: JSX.Element;
 };
@@ -36,7 +39,7 @@ export class CollapsibleChat extends React.Component<IProps, IState> {
                     <div className="chatWindowPositioner">
                         <div className="chatWindowContainer">  
                             <HeaderOverlay close={this.toggle} />                     
-                            <CachedChat />
+                            <CachedChat botParams={this.props.botParams} />
                         </div>
                     </div>
                 </UnmountClosed>

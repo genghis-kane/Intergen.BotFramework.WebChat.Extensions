@@ -632,3 +632,7 @@ body .wc-app, .wc-app button, .wc-app input, .wc-app textarea {
 .wc-adaptive-card {
   width: auto !important;
 }
+
+.wc-suggested-actions .wc-hscroll > ul {
+  margin: 0;
+}
